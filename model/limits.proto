@@ -1,0 +1,57 @@
+syntax = "proto3";
+package model;
+
+import "google/protobuf/empty.proto";
+
+// Handshake
+
+message IHave {
+    int64 epoch = 1;
+    repeated string hosts = 2;
+}
+
+message Push {
+    repeated HostTraffic traffic = 1;
+}
+
+message HostTraffic {
+    string name = 1;
+    repeated Traffic traffic = 2;
+}
+
+message Traffic {
+    string facet = 1;
+    int64 usage = 2;
+}
+
+message ConnectorHandshake {
+    oneof hs {
+        IHave iHave = 1;
+        Push push = 2;
+    }
+}
+
+message ResponderHandshake {
+    repeated string iWant = 1;
+    Push push = 2;
+}
+
+message UseRequest {
+    string facet = 1;
+    int64 quantity = 2;
+}
+
+message UseResponse {
+    string facet = 1;
+    int64 quantity = 2;
+    int64 remaining = 3;
+}
+
+service GossipProtocol {
+    rpc Gossip (stream ConnectorHandshake) returns (stream ResponderHandshake);
+    rpc Sync (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+service LimiterProtocol {
+    rpc Use(UseRequest) returns (UseResponse);
+}
