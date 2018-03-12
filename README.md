@@ -78,3 +78,11 @@ there aren't many details in that post - this is just a quick take on one way
 that might work. Any misunderstandings are entirely my own.
 
 https://yahooeng.tumblr.com/post/111288877956/cloud-bouncer-distributed-rate-limiting-at-yahoo
+
+#### Why 'girl'?
+
+It's the shortest English word with the letters "G", "R" and "L" in order; and it _does_ work using
+intervals, which fills in the backronym.
+
+Picking the first word alphabetically instead it would be "aggregately", which is one of those things
+you'll only find in a Scrabble dictionary.
